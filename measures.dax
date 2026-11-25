@@ -1,0 +1,9 @@
+// Create each measure separately in Power BI Desktop.
+Total Shipments = COUNTROWS(fact_shipments)
+Total Cost = SUM(fact_shipments[Cost])
+Total Miles = SUM(fact_shipments[Miles])
+On Time Shipments = COUNTROWS(FILTER(fact_shipments, fact_shipments[ActualDays] <= fact_shipments[PromisedDays]))
+Late Shipments = [Total Shipments] - [On Time Shipments]
+On Time % = DIVIDE([On Time Shipments], [Total Shipments])
+Cost per Mile = DIVIDE([Total Cost], [Total Miles])
+Cost per Shipment = DIVIDE([Total Cost], [Total Shipments])
